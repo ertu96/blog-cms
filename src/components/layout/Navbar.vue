@@ -19,7 +19,7 @@ export default defineComponent({
       >
         LOGO
       </RouterLink>
-      <div class="flex justify-end gap-x-8">
+      <div class="flex justify-end gap-x-6 text-sm">
         <RouterLink to="/login">Login</RouterLink>
         <RouterLink to="/register">Register</RouterLink>
       </div>
