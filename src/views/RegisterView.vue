@@ -1,59 +1,59 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import * as Yup from "yup";
+import DynamicForm from "../components/form/DynamicForm.vue";
+
+const formSchema = {
+  fields: [
+    {
+      label: "E-Mail",
+      name: "email",
+      as: "input",
+      type: "email",
+      rules: Yup.string().required("Required").email("Invalid e-mail address"),
+    },
+    {
+      label: "First Name",
+      name: "firstname",
+      as: "input",
+      rules: Yup.string().required("Required").min(3, "Too short"),
+    },
+    {
+      label: "Last Name",
+      name: "lastname",
+      as: "input",
+      rules: Yup.string().required("Required").min(3, "Too short"),
+    },
+    {
+      label: "Password",
+      name: "password",
+      as: "input",
+      type: "password",
+      rules: Yup.string().required("Required").min(8, "Too short"),
+    },
+    {
+      label: "Re-enter password",
+      name: "rePassword",
+      as: "input",
+      type: "password",
+      rules: Yup.string()
+        .required("Required")
+        .min(8, "Too short")
+        .oneOf([Yup.ref("password")], "Passwords must match"),
+    },
+  ],
+};
+
+const onSubmit = () => {
+  console.log("submit");
+};
+</script>
 
 <template>
-  <div
-    class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto"
-  >
-    <div class="card-body">
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">First name</span>
-        </label>
-        <input
-          type="text"
-          placeholder="firstname"
-          class="input input-bordered"
-        />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Last name</span>
-        </label>
-        <input
-          type="text"
-          placeholder="lastname"
-          class="input input-bordered"
-        />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Email</span>
-        </label>
-        <input type="text" placeholder="email" class="input input-bordered" />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Password</span>
-        </label>
-        <input
-          type="text"
-          placeholder="password"
-          class="input input-bordered"
-        />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text"> Reenter Password</span>
-        </label>
-        <input
-          type="text"
-          placeholder="reenter password"
-          class="input input-bordered"
-        />
-      </div>
-      <div class="form-control mt-6">
-        <button class="btn btn-primary">Login</button>
-      </div>
-    </div>
+  <div class="card flex-shrink-0 w-full max-w-sm mx-auto">
+    <DynamicForm
+      :submitLabel="'Register'"
+      :onSubmit="onSubmit"
+      :schema="formSchema"
+    />
   </div>
 </template>

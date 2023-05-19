@@ -12,20 +12,29 @@ export default {
       type: Object,
       required: true,
     },
+    onSubmit: {
+      type: Function,
+      required: true,
+    },
+    submitLabel: {
+      type: String,
+      required: true,
+    },
   },
 };
 </script>
 
 <template>
-  <Form class="card-body">
+  <Form class="card-body" @submit="onSubmit()">
     <div
       v-for="{ as, name, label, ...attrs } in schema.fields"
       :key="name"
       class="form-control"
     >
-      <label class="label" :for="name"
-        ><span class="label-text">{{ label }}</span></label
-      >
+      <label class="label flex justify-between" :for="name">
+        <span class="label-text">{{ label }}</span>
+        <ErrorMessage class="text-sm text-error" :name="name" />
+      </label>
       <Field
         :as="as"
         :id="name"
@@ -34,8 +43,9 @@ export default {
         v-bind="attrs"
         class="input input-bordered"
       />
-      <ErrorMessage :name="name" />
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary mt-6">
+      {{ submitLabel }}
+    </button>
   </Form>
 </template>
