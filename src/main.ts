@@ -1,14 +1,21 @@
-import { createPinia } from "pinia";
-import { createApp } from "vue";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { createPinia } from 'pinia'
+import { createApp } from 'vue'
 
-import App from "./App.vue";
-import router from "./router";
+import App from './App.vue'
+import router from './router'
 
-import "./style.css";
+import { faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import './style.css'
 
-const app = createApp(App);
+library.add(faRightToBracket)
+library.add(faUserPlus)
 
-app.use(createPinia());
-app.use(router);
+const app = createApp(App)
 
-app.mount("#app");
+app.component('font-awesome-icon', FontAwesomeIcon)
+app.use(createPinia())
+app.use(router)
+
+app.mount('#app')

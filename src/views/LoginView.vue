@@ -1,37 +1,60 @@
-<script setup lang="ts">
-import * as Yup from "yup";
-import DynamicForm from "../components/form/DynamicForm.vue";
+<script lang="ts">
+import axios from 'axios'
+import { defineComponent } from 'vue'
+import { string } from 'yup'
+import DynamicForm from '../components/form/DynamicForm.vue'
+import PageTitle from '../components/layout/PageTitle.vue'
 
-const formSchema = {
-  fields: [
-    {
-      label: "E-Mail",
-      name: "email",
-      as: "input",
-      type: "email",
-      rules: Yup.string().required("Required").email("Invalid e-mail address"),
+export default defineComponent({
+    name: 'LoginView',
+    components: {
+        DynamicForm,
+        PageTitle,
     },
-    {
-      label: "Password",
-      name: "password",
-      as: "input",
-      type: "password",
-      rules: Yup.string().required("Required"),
+    setup() {
+        return {
+            formSchema: {
+                fields: [
+                    {
+                        label: 'E-Mail',
+                        name: 'email',
+                        as: 'input',
+                        type: 'email',
+                        rules: string()
+                            .required('Required')
+                            .email('Invalid e-mail address'),
+                    },
+                    {
+                        label: 'Password',
+                        name: 'password',
+                        as: 'input',
+                        type: 'password',
+                        rules: string().required('Required'),
+                    },
+                ],
+            },
+        }
     },
-  ],
-};
-
-const onSubmit = () => {
-  console.log("submit");
-};
+    methods: {
+        onSubmit: async () => {
+            try {
+                const response = await axios.post('/api/auth/login')
+                console.log(response)
+            } catch (error) {
+                console.error(error)
+            }
+        },
+    },
+})
 </script>
 
 <template>
-  <div class="card flex-shrink-0 w-full max-w-sm mx-auto">
-    <DynamicForm
-      :submitLabel="'Login'"
-      :onSubmit="onSubmit"
-      :schema="formSchema"
-    />
-  </div>
+    <PageTitle>Login</PageTitle>
+    <div class="card mx-auto w-full max-w-sm flex-shrink-0">
+        <DynamicForm
+            :submit-label="'Login'"
+            :on-submit="onSubmit"
+            :schema="formSchema"
+        />
+    </div>
 </template>

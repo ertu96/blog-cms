@@ -1,7 +1,7 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia'
 
-export const useSystemStore = defineStore("system", {
-  state: () => ({}),
-  getters: {},
-  actions: {},
-});
+export const useSystemStore = defineStore('system', {
+    state: () => ({}),
+    getters: {},
+    actions: {},
+})
