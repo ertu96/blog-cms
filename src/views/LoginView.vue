@@ -1,5 +1,5 @@
 <script lang="ts">
-import axios from 'axios'
+import { useForm } from 'vee-validate'
 import { defineComponent } from 'vue'
 import { string } from 'yup'
 import DynamicForm from '../components/form/DynamicForm.vue'
@@ -12,7 +12,14 @@ export default defineComponent({
     PageTitle,
   },
   setup() {
+    const { handleSubmit } = useForm()
+
+    const onSubmit = handleSubmit((values) => {
+      console.log(values)
+    })
+
     return {
+      onSubmit,
       formSchema: {
         fields: [
           {
@@ -36,14 +43,14 @@ export default defineComponent({
     }
   },
   methods: {
-    onSubmit: async () => {
+    /* onSubmit: async () => {
       try {
         const response = await axios.post('/api/auth/login')
         console.log(response)
       } catch (error) {
         console.error(error)
       }
-    },
+    }, */
   },
 })
 </script>
