@@ -1,10 +1,17 @@
 <script lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { defineComponent } from 'vue'
+import { useSystemStore } from '../../stores/SystemStore'
 
 export default defineComponent({
   name: 'Navbar',
   components: { FontAwesomeIcon },
+  setup() {
+    const systemStore = useSystemStore()
+    return {
+      systemStore,
+    }
+  },
 })
 </script>
 
@@ -21,7 +28,16 @@ export default defineComponent({
       >
         LOGO
       </RouterLink>
-      <div class="flex justify-end gap-x-4 text-sm md:gap-x-8">
+      <div
+        v-if="systemStore.isLoggedIn"
+        class="flex justify-end gap-x-4 text-sm md:gap-x-8"
+      >
+        <button class="flex items-center gap-1" @click="systemStore.logoutUser">
+          <FontAwesomeIcon :icon="['fas', 'right-to-bracket']" />
+          Logout
+        </button>
+      </div>
+      <div v-else class="flex justify-end gap-x-4 text-sm md:gap-x-8">
         <RouterLink to="/login" class="flex items-center gap-1">
           <FontAwesomeIcon :icon="['fas', 'right-to-bracket']" />
           Login</RouterLink

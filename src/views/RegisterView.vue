@@ -3,11 +3,13 @@ import axios from 'axios'
 import { defineComponent } from 'vue'
 import { ref, string } from 'yup'
 import DynamicForm from '../components/form/DynamicForm.vue'
+import PageTitle from '../components/layout/PageTitle.vue'
 
 export default defineComponent({
   name: 'RegisterView',
   components: {
     DynamicForm,
+    PageTitle,
   },
   setup() {
     return {
@@ -69,6 +71,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <PageTitle>Register</PageTitle>
   <div class="card mx-auto w-full max-w-sm flex-shrink-0">
     <DynamicForm
       :submit-label="'Register'"

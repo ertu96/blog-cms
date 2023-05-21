@@ -7,7 +7,9 @@ import Navbar from './components/layout/Navbar.vue'
 <template>
   <div className="flex flex-col min-h-screen justify-between">
     <Navbar />
-    <main class="container mx-auto my-20 bg-black/10 p-4 dark:bg-white/10">
+    <main
+      class="container mx-auto my-20 rounded bg-black/10 p-6 dark:bg-white/10"
+    >
       <RouterView />
     </main>
     <Footer />

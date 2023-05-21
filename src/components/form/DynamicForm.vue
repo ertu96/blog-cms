@@ -22,12 +22,19 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
 })
 </script>
 
 <template>
-  <Form class="card-body" @submit="onSubmit()">
+  <Form
+    class="card-body"
+    @submit="(_event, values) => onSubmit(values.controlledValues)"
+  >
     <div
       v-for="{ as, name, label, ...attrs } in schema.fields"
       :key="name"
@@ -46,7 +53,11 @@ export default defineComponent({
         class="input-bordered input"
       />
     </div>
-    <button type="submit" class="btn-primary btn mt-6">
+    <button
+      type="submit"
+      class="btn-primary btn mt-6"
+      :class="loading ? 'loading' : ''"
+    >
       {{ submitLabel }}
     </button>
   </Form>
