@@ -2,6 +2,10 @@
 import { RouterView } from 'vue-router'
 import Footer from './components/layout/Footer.vue'
 import Navbar from './components/layout/Navbar.vue'
+import { useSystemStore } from './stores/SystemStore'
+
+const systemStore = useSystemStore()
+systemStore.initUser()
 </script>
 
 <template>

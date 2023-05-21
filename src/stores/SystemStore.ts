@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { useToast } from 'vue-toastification'
+import router from '../router'
 
 const toast = useToast()
 
@@ -24,6 +25,14 @@ export const useSystemStore = defineStore('system', {
       localStorage.removeItem('accessToken')
       this.loggedIn = false
       toast.info('Logged out')
+      router.push({ name: 'login' })
+    },
+    initUser() {
+      const accessToken = localStorage.getItem('accessToken')
+      if (accessToken) {
+        this.accessToken = accessToken
+        this.loggedIn = true
+      }
     },
   },
 })

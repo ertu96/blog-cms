@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useSystemStore } from '../stores/SystemStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,14 @@ const router = createRouter({
       component: () => import('../views/RegisterView.vue'),
     },
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'login' && !useSystemStore().isLoggedIn)
+    next({ name: 'login' })
+  else if (to.name === 'login' && useSystemStore().isLoggedIn)
+    next({ name: from.name || 'home' })
+  else next()
 })
 
 export default router

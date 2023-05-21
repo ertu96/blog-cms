@@ -1,7 +1,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
-import Toast, { PluginOptions } from 'vue-toastification'
+import Toast from 'vue-toastification'
 
 import App from './App.vue'
 import router from './router'
@@ -16,12 +16,10 @@ library.add(faUserPlus)
 
 const app = createApp(App)
 
-const options: PluginOptions = {}
-
 app.component('FontAwesomeIcon', FontAwesomeIcon)
 
 app.use(createPinia())
-app.use(Toast, options)
+app.use(Toast)
 app.use(router)
 
 app.mount('#app')
