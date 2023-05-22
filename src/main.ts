@@ -6,13 +6,22 @@ import Toast from 'vue-toastification'
 import App from './App.vue'
 import router from './router'
 
-import { faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import {
+  faMoon,
+  faPlus,
+  faRightToBracket,
+  faSun,
+  faUserPlus,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import 'vue-toastification/dist/index.css'
 import './style.css'
 
 library.add(faRightToBracket)
 library.add(faUserPlus)
+library.add(faMoon)
+library.add(faSun)
+library.add(faPlus)
 
 const app = createApp(App)
 

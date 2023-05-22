@@ -14,4 +14,5 @@ export default {
     rtl: false,
     prefix: '',
   },
+  darkMode: 'class',
 }

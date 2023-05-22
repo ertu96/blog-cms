@@ -30,22 +30,42 @@ export default defineComponent({
       </RouterLink>
       <div
         v-if="systemStore.isLoggedIn"
-        class="flex justify-end gap-x-4 text-sm md:gap-x-8"
+        class="flex gap-x-4 text-sm md:gap-x-8"
       >
-        <button class="flex items-center gap-1" @click="systemStore.logoutUser">
-          <FontAwesomeIcon :icon="['fas', 'right-to-bracket']" />
-          Logout
-        </button>
+        <RouterLink to="/edit-post/new"> Create Post </RouterLink>
+        <RouterLink to="/my-posts"> My Posts </RouterLink>
       </div>
-      <div v-else class="flex justify-end gap-x-4 text-sm md:gap-x-8">
-        <RouterLink to="/login" class="flex items-center gap-1">
-          <FontAwesomeIcon :icon="['fas', 'right-to-bracket']" />
-          Login</RouterLink
+      <div class="flex items-center justify-end gap-10">
+        <div
+          v-if="systemStore.isLoggedIn"
+          class="flex justify-end gap-x-4 text-sm md:gap-x-8"
         >
-        <RouterLink to="/register" class="flex items-center gap-1">
-          <FontAwesomeIcon :icon="['fas', 'user-plus']" />
-          Register</RouterLink
+          <button
+            class="flex items-center gap-1"
+            @click="systemStore.logoutUser"
+          >
+            <FontAwesomeIcon :icon="['fas', 'right-to-bracket']" />
+            Logout
+          </button>
+        </div>
+        <div v-else class="flex justify-end gap-x-4 text-sm md:gap-x-8">
+          <RouterLink to="/login" class="flex items-center gap-1">
+            <FontAwesomeIcon :icon="['fas', 'right-to-bracket']" />
+            Login</RouterLink
+          >
+          <RouterLink to="/register" class="flex items-center gap-1">
+            <FontAwesomeIcon :icon="['fas', 'user-plus']" />
+            Register</RouterLink
+          >
+        </div>
+        <button
+          class="btn-outline btn-square btn-sm btn"
+          @click="systemStore.toggleDarkMode"
         >
+          <FontAwesomeIcon
+            :icon="['fas', systemStore.isDarkMode ? 'moon' : 'sun']"
+          />
+        </button>
       </div>
     </div>
   </nav>

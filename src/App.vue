@@ -9,7 +9,11 @@ systemStore.initUser()
 </script>
 
 <template>
-  <div className="flex flex-col min-h-screen justify-between">
+  <div
+    class="main-background flex min-h-screen flex-col justify-between"
+    :class="systemStore.isDarkMode ? 'dark' : ''"
+    :data-theme="systemStore.isDarkMode ? 'dark' : 'light'"
+  >
     <Navbar />
     <main
       class="container mx-auto my-20 rounded bg-black/10 p-6 dark:bg-white/10"

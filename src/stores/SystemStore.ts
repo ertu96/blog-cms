@@ -6,14 +6,23 @@ const toast = useToast()
 
 export const useSystemStore = defineStore('system', {
   state: () => ({
+    darkMode:
+      localStorage.getItem('theme') !== null
+        ? localStorage.getItem('theme') === 'dark'
+        : 'dark',
     loggedIn: false,
     accessToken: '',
   }),
   getters: {
+    isDarkMode: (state) => state.darkMode,
     isLoggedIn: (state) => state.loggedIn,
     getAccessToken: (state) => state.accessToken,
   },
   actions: {
+    toggleDarkMode() {
+      this.darkMode = !this.darkMode
+      localStorage.setItem('theme', this.darkMode ? 'dark' : 'light')
+    },
     loginUser(accessToken: string) {
       this.accessToken = accessToken
       localStorage.setItem('accessToken', accessToken)
