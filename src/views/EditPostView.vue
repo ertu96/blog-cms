@@ -14,12 +14,28 @@ import PageTitle from '../components/layout/PageTitle.vue'
       <Field
         id="title"
         as="input"
-        name="input"
+        name="title"
         placeholder="Title"
         type="text"
         class="input-bordered input"
       />
     </div>
+    <div class="form-control">
+      <label class="label flex justify-between" for="category">
+        <span class="label-text">Category</span>
+        <ErrorMessage class="text-sm text-error" name="category" />
+      </label>
+      <Field
+        id="category"
+        as="select"
+        name="input"
+        placeholder="Category"
+        class="input-bordered input"
+      >
+        <option value="">Choose category</option>
+      </Field>
+    </div>
+
     <button type="submit" class="btn-primary btn mt-6">Save</button>
   </Form>
 </template>
