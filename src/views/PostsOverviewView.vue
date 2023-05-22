@@ -1,0 +1,1 @@
+<template>My Posts</template>

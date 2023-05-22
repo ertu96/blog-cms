@@ -22,8 +22,13 @@ const router = createRouter({
     },
     {
       path: '/edit-post/:id',
-      name: 'editPost',
+      // name: 'editPost',
       component: () => import('../views/EditPostView.vue'),
+    },
+    {
+      path: '/my-posts',
+      name: 'editPost',
+      component: () => import('../views/PostsOverviewView.vue'),
     },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundView },
   ],
