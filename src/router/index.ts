@@ -21,6 +21,11 @@ const router = createRouter({
       component: () => import('../views/RegisterView.vue'),
     },
     {
+      path: '/categories',
+      name: 'categories',
+      component: () => import('../views/CategoriesView.vue'),
+    },
+    {
       path: '/edit-post/:id',
       // name: 'editPost',
       component: () => import('../views/EditPostView.vue'),

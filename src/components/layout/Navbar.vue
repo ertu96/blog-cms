@@ -32,6 +32,7 @@ export default defineComponent({
         v-if="systemStore.isLoggedIn"
         class="flex gap-x-4 text-sm md:gap-x-8"
       >
+        <RouterLink to="/categories"> Categories </RouterLink>
         <RouterLink to="/edit-post/new"> Create Post </RouterLink>
         <RouterLink to="/my-posts"> My Posts </RouterLink>
       </div>

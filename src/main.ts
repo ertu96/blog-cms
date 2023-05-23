@@ -1,4 +1,5 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import Toast from 'vue-toastification'
@@ -11,6 +12,7 @@ import {
   faPlus,
   faRightToBracket,
   faSun,
+  faTrash,
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -22,12 +24,14 @@ library.add(faUserPlus)
 library.add(faMoon)
 library.add(faSun)
 library.add(faPlus)
+library.add(faTrash)
 
 const app = createApp(App)
 
 app.component('FontAwesomeIcon', FontAwesomeIcon)
 
 app.use(createPinia())
+app.use(VueQueryPlugin)
 app.use(Toast)
 app.use(router)
 
