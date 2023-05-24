@@ -1,0 +1,10 @@
+<template>
+  <thead>
+    <tr>
+      <th>Thumbnail</th>
+      <th>Title</th>
+      <th>Slug</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+</template>
