@@ -3,4 +3,5 @@ export interface Category {
   createdAt: Date
   updatedAt: Date
   name: string
+  slug: string
 }

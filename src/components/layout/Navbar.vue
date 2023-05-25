@@ -2,6 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { defineComponent } from 'vue'
 import { useSystemStore } from '../../stores/SystemStore'
+import { parseJwt } from '../../utils/parseJwt'
 
 export default defineComponent({
   name: 'Navbar',
@@ -11,6 +12,9 @@ export default defineComponent({
     return {
       systemStore,
     }
+  },
+  methods: {
+    parseJwt,
   },
 })
 </script>
@@ -41,6 +45,12 @@ export default defineComponent({
           v-if="systemStore.isLoggedIn"
           class="flex justify-end gap-x-4 text-sm md:gap-x-8"
         >
+          <div>
+            <div class="text-xs opacity-70">Logged in as</div>
+            <div class="font-bold">
+              {{ parseJwt(systemStore.getAccessToken).name }}
+            </div>
+          </div>
           <button
             class="flex items-center gap-1"
             @click="systemStore.logoutUser"

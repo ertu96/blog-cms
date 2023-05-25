@@ -1,9 +1,6 @@
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { PropType, defineComponent } from 'vue'
 import { Category } from '../../../interfaces/Category'
-import { capitalize } from '../../../utils/capitalize'
-import CategoryCreateDialog from '../dialog/CategoryCreateDialog.vue'
 import CategoryDeleteDialog from '../dialog/CategoryDeleteDialog.vue'
 import CategoriesTableHeader from './header/CategoriesTableHeader.vue'
 import CategoriesTableRow from './row/CategoriesTableRow.vue'
@@ -12,9 +9,7 @@ export default defineComponent({
   components: {
     CategoriesTableRow,
     CategoriesTableHeader,
-    CategoryCreateDialog,
     CategoryDeleteDialog,
-    FontAwesomeIcon,
   },
   props: {
     categories: {
@@ -22,7 +17,6 @@ export default defineComponent({
       required: true,
     },
   },
-  methods: { capitalize },
 })
 </script>
 
@@ -38,14 +32,6 @@ export default defineComponent({
         />
       </tbody>
     </table>
-    <label
-      class="btn-accent btn-block btn gap-2 rounded-t-none"
-      for="create-category"
-    >
-      <FontAwesomeIcon :icon="['fas', 'plus']" size="lg" />
-      Add new category
-    </label>
   </div>
-  <CategoryCreateDialog />
   <CategoryDeleteDialog />
 </template>

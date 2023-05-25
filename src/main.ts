@@ -9,6 +9,7 @@ import router from './router'
 
 import {
   faMoon,
+  faPenToSquare,
   faPlus,
   faRightToBracket,
   faSun,
@@ -25,6 +26,7 @@ library.add(faMoon)
 library.add(faSun)
 library.add(faPlus)
 library.add(faTrash)
+library.add(faPenToSquare)
 
 const app = createApp(App)
 

@@ -14,16 +14,16 @@ export default defineComponent({
     const { mutate } = useMutation({
       mutationFn: () =>
         deleteCategory(
-          categoryStore.getCategoryDeletion &&
-            categoryStore.getCategoryDeletion.id
+          categoryStore.getSelectedCategory &&
+            categoryStore.getSelectedCategory.id
         ),
       onSuccess: () => {
         toast.success('Category deleted')
-        categoryStore.setCategoryDeletion(null)
+        categoryStore.setSelectedCategory(null)
       },
       onError: (err) => {
         toast.error('Failed to delete category')
-        console.log(err)
+        console.error(err)
       },
     })
     return { mutate, categoryStore, capitalize }
@@ -36,11 +36,7 @@ export default defineComponent({
   <label for="delete-category" class="modal cursor-pointer">
     <label class="modal-box relative" for="">
       <h3 class="text-lg font-bold">
-        <span>
-          {{
-            capitalize(categoryStore.getCategoryDeletion?.name as string)
-          }}</span
-        >
+        <span> {{ categoryStore.getSelectedCategory?.name }}</span>
       </h3>
       <p class="py-4">Are you sure you want to delete this category?</p>
       <div class="modal-action">

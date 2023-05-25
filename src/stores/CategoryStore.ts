@@ -3,14 +3,14 @@ import { Category } from '../interfaces/Category'
 
 export const useCategoryStore = defineStore('category', {
   state: () => ({
-    categoryDeletion: null as Category | null,
+    selectedCategory: null as Category | null,
   }),
   getters: {
-    getCategoryDeletion: (state) => state.categoryDeletion,
+    getSelectedCategory: (state) => state.selectedCategory,
   },
   actions: {
-    setCategoryDeletion(category: Category | null) {
-      this.categoryDeletion = category
+    setSelectedCategory(category: Category | null) {
+      this.selectedCategory = category
     },
   },
 })

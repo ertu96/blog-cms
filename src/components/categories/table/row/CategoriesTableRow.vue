@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { PropType, defineComponent } from 'vue'
 import { Category } from '../../../../interfaces/Category'
 import { useCategoryStore } from '../../../../stores/CategoryStore'
-import { capitalize } from '../../../../utils/capitalize'
 
 export default defineComponent({
   components: { FontAwesomeIcon },
@@ -13,11 +12,10 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
+  setup() {
     const categoryStore = useCategoryStore()
-    categoryStore.setCategoryDeletion(props.category)
+    return { setSelectedCategory: categoryStore.setSelectedCategory }
   },
-  methods: { capitalize },
 })
 </script>
 
@@ -29,11 +27,22 @@ export default defineComponent({
       </div>
     </td>
     <td>
-      {{ capitalize(category.name) }}
+      {{ category.name }}
     </td>
-    <td>{{ category.name }}</td>
+    <td>{{ category.slug }}</td>
     <td class="rounded-none">
-      <label for="delete-category" class="btn-ghost btn">
+      <label
+        for="edit-category"
+        class="btn-ghost btn"
+        @click="() => setSelectedCategory(category)"
+      >
+        <FontAwesomeIcon :icon="['fas', 'pen-to-square']" size="lg" />
+      </label>
+      <label
+        for="delete-category"
+        class="btn-ghost btn"
+        @click="() => setSelectedCategory(category)"
+      >
         <FontAwesomeIcon :icon="['fas', 'trash']" size="lg" />
       </label>
     </td>

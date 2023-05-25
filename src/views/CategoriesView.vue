@@ -1,15 +1,21 @@
 <script lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { useQuery } from '@tanstack/vue-query'
 import { defineComponent } from 'vue'
 import { useToast } from 'vue-toastification'
 import { getCategories } from '../api/category/getCategories'
+import CategoryEditDialog from '../components/categories/dialog/CategoryEditDialog.vue'
 import CategoriesTable from '../components/categories/table/CategoriesTable.vue'
 import PageTitle from '../components/layout/PageTitle.vue'
-import { capitalize } from '../utils/capitalize'
 
 export default defineComponent({
   name: 'CategoriesView',
-  components: { PageTitle, CategoriesTable },
+  components: {
+    PageTitle,
+    CategoriesTable,
+    FontAwesomeIcon,
+    CategoryEditDialog,
+  },
   setup() {
     const toast = useToast()
     const { isLoading, isError, isFetching, data, error, refetch } = useQuery({
@@ -17,13 +23,10 @@ export default defineComponent({
       queryFn: getCategories,
       onError: (err) => {
         toast.error('Failed to load categories')
-        console.log(err)
+        console.error(err)
       },
     })
     return { isLoading, isError, isFetching, data, error, refetch }
-  },
-  methods: {
-    capitalize,
   },
 })
 </script>
@@ -36,6 +39,16 @@ export default defineComponent({
     <p>Try Again later</p>
   </div>
   <div v-else-if="data">
-    <CategoriesTable :categories="data" />
+    <CategoriesTable v-if="data.length" :categories="data" />
+    <div v-else>No categories</div>
+    <label
+      class="btn-accent btn-block btn gap-2"
+      :class="{ 'rounded-t-none': data.length }"
+      for="edit-category"
+    >
+      <FontAwesomeIcon :icon="['fas', 'plus']" size="lg" />
+      Add new category
+    </label>
+    <CategoryEditDialog />
   </div>
 </template>
