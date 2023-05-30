@@ -7,6 +7,10 @@ export const useCategoryStore = defineStore('category', {
   }),
   getters: {
     getSelectedCategory: (state) => state.selectedCategory,
+    isCategorySelected: (state) =>
+      state.selectedCategory &&
+      state.selectedCategory !== null &&
+      state.selectedCategory.id > 0,
   },
   actions: {
     setSelectedCategory(category: Category | null) {

@@ -45,12 +45,22 @@ export default defineComponent({
           v-if="systemStore.isLoggedIn"
           class="flex justify-end gap-x-4 text-sm md:gap-x-8"
         >
-          <div>
-            <div class="text-xs opacity-70">Logged in as</div>
-            <div class="font-bold">
-              {{ parseJwt(systemStore.getAccessToken).name }}
+          <div class="flex gap-x-2">
+            <div class="placeholder avatar">
+              <div
+                class="w-10 rounded-full bg-neutral-focus text-neutral-content"
+              >
+                <span class="text-xs">AA</span>
+              </div>
+            </div>
+            <div>
+              <div class="text-xs opacity-70">Logged in as</div>
+              <div class="font-bold">
+                {{ parseJwt(systemStore.getAccessToken).name }}
+              </div>
             </div>
           </div>
+
           <button
             class="flex items-center gap-1"
             @click="systemStore.logoutUser"

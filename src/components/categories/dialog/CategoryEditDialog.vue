@@ -16,11 +16,6 @@ export default defineComponent({
     const toast = useToast()
     const categoryStore = useCategoryStore()
 
-    const checkIfCategoryIsSelected = () =>
-      categoryStore.getSelectedCategory &&
-      categoryStore.getSelectedCategory !== null &&
-      categoryStore.getSelectedCategory.id > 0
-
     const formSchema = {
       fields: [
         {
@@ -29,7 +24,7 @@ export default defineComponent({
           as: 'input',
           placeholder: 'Provide a good name',
           rules: string().required('Required'),
-          ...(checkIfCategoryIsSelected() && {
+          ...(categoryStore.isCategorySelected && {
             value: categoryStore.getSelectedCategory!.name,
           }),
         },
@@ -40,19 +35,19 @@ export default defineComponent({
       mutationFn: (category: CategoryForm | Category) =>
         createOrEditCategory({
           ...category,
-          ...(checkIfCategoryIsSelected() && {
+          ...(categoryStore.isCategorySelected && {
             id: categoryStore.getSelectedCategory!.id,
           }),
         }),
       onSuccess: () =>
         toast.success(
-          checkIfCategoryIsSelected()
+          categoryStore.isCategorySelected
             ? 'Category updated'
             : 'New category created'
         ),
       onError: (err) => {
         toast.error(
-          checkIfCategoryIsSelected()
+          categoryStore.isCategorySelected
             ? 'Failed to update category'
             : 'Failed to create new category'
         )
@@ -61,9 +56,12 @@ export default defineComponent({
     })
 
     const onSubmit = (values: any) => mutate(values)
-    return { onSubmit, formSchema, categoryStore, checkIfCategoryIsSelected }
+    return {
+      onSubmit,
+      formSchema,
+      categoryStore,
+    }
   },
-  methods: {},
 })
 </script>
 
@@ -74,12 +72,13 @@ export default defineComponent({
       <label
         for="edit-category"
         class="btn-sm btn-circle btn absolute right-2 top-2"
+        @click="categoryStore.setSelectedCategory(null)"
         >✕</label
       >
 
       <h3 class="text-lg font-bold">
         {{
-          checkIfCategoryIsSelected()
+          categoryStore.isCategorySelected
             ? categoryStore.getSelectedCategory!.name
             : 'New Category'
         }}
@@ -87,7 +86,7 @@ export default defineComponent({
       <DynamicForm
         :on-submit="onSubmit"
         :schema="formSchema"
-        :submit-label="checkIfCategoryIsSelected() ? 'Edit' : 'Add'"
+        :submit-label="categoryStore.isCategorySelected ? 'Edit' : 'Add'"
       />
     </div>
   </div>
