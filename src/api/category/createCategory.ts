@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CategoryForm } from '../../interfaces/CategoryForm'
+import { CategoryForm } from '../../interfaces/forms/CategoryForm'
 import { getAuthorizationHeader } from '../../utils/getAuthorizationHeader'
 
 export const createCategory = async (category: CategoryForm): Promise<void> => {

@@ -1,11 +1,12 @@
 <script lang="ts">
-import { useMutation } from '@tanstack/vue-query'
+import { useMutation, useQueryClient } from '@tanstack/vue-query'
 import { defineComponent } from 'vue'
 import { useToast } from 'vue-toastification'
 import { string } from 'yup'
 import { createOrEditCategory } from '../../../api/category/utils/createOrEditCategory'
 import { Category } from '../../../interfaces/Category'
-import { CategoryForm } from '../../../interfaces/CategoryForm.js'
+
+import { CategoryForm } from '../../../interfaces/forms/CategoryForm'
 import { useCategoryStore } from '../../../stores/CategoryStore'
 import DynamicForm from '../../form/DynamicForm.vue'
 
@@ -15,6 +16,7 @@ export default defineComponent({
   setup() {
     const toast = useToast()
     const categoryStore = useCategoryStore()
+    const queryClient = useQueryClient()
 
     const formSchema = {
       fields: [
@@ -39,12 +41,16 @@ export default defineComponent({
             id: categoryStore.getSelectedCategory!.id,
           }),
         }),
-      onSuccess: () =>
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['categories'] })
+
         toast.success(
           categoryStore.isCategorySelected
             ? 'Category updated'
             : 'New category created'
-        ),
+        )
+      },
+
       onError: (err) => {
         toast.error(
           categoryStore.isCategorySelected

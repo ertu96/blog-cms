@@ -1,5 +1,5 @@
 import { Category } from '../../../interfaces/Category'
-import { CategoryForm } from '../../../interfaces/CategoryForm'
+import { CategoryForm } from '../../../interfaces/forms/CategoryForm'
 import { createCategory } from '../createCategory'
 import { editCategory } from '../editCategory'
 

@@ -5,7 +5,8 @@ import { useToast } from 'vue-toastification'
 import { string } from 'yup'
 import DynamicForm from '../components/form/DynamicForm.vue'
 import PageTitle from '../components/layout/PageTitle.vue'
-import { LoginForm } from '../interfaces/LoginForm'
+
+import { LoginForm } from '../interfaces/forms/LoginForm'
 import router from '../router'
 import { useSystemStore } from '../stores/SystemStore'
 

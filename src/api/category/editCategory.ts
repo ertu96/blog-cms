@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CategoryForm } from '../../interfaces/CategoryForm'
+import { CategoryForm } from '../../interfaces/forms/CategoryForm'
 import { getAuthorizationHeader } from '../../utils/getAuthorizationHeader'
 
 export const editCategory = async (
@@ -11,5 +11,6 @@ export const editCategory = async (
       ...getAuthorizationHeader(),
     },
   })
+
   return response.data
 }

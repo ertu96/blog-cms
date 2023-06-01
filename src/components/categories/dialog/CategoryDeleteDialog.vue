@@ -1,5 +1,5 @@
 <script lang="ts">
-import { useMutation } from '@tanstack/vue-query'
+import { useMutation, useQueryClient } from '@tanstack/vue-query'
 import { defineComponent } from 'vue'
 import { useToast } from 'vue-toastification'
 import { deleteCategory } from '../../../api/category/deleteCategory'
@@ -11,6 +11,8 @@ export default defineComponent({
   setup() {
     const categoryStore = useCategoryStore()
     const toast = useToast()
+    const queryClient = useQueryClient()
+
     const { mutate } = useMutation({
       mutationFn: () =>
         deleteCategory(
@@ -20,6 +22,7 @@ export default defineComponent({
       onSuccess: () => {
         toast.success('Category deleted')
         categoryStore.setSelectedCategory(null)
+        queryClient.invalidateQueries({ queryKey: ['categories'] })
       },
       onError: (err) => {
         toast.error('Failed to delete category')

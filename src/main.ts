@@ -8,6 +8,7 @@ import App from './App.vue'
 import router from './router'
 
 import {
+  faImage,
   faMoon,
   faPenToSquare,
   faPlus,
@@ -27,6 +28,7 @@ library.add(faSun)
 library.add(faPlus)
 library.add(faTrash)
 library.add(faPenToSquare)
+library.add(faImage)
 
 const app = createApp(App)
 
