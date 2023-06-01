@@ -8,6 +8,7 @@ import App from './App.vue'
 import router from './router'
 
 import {
+  faFloppyDisk,
   faImage,
   faMoon,
   faPenToSquare,
@@ -29,6 +30,7 @@ library.add(faPlus)
 library.add(faTrash)
 library.add(faPenToSquare)
 library.add(faImage)
+library.add(faFloppyDisk)
 
 const app = createApp(App)
 

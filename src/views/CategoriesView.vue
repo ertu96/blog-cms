@@ -41,11 +41,7 @@ export default defineComponent({
   <div v-else-if="data">
     <CategoriesTable v-if="data.length" :categories="data" />
     <div v-else>No categories</div>
-    <label
-      class="btn-accent btn-block btn gap-2"
-      :class="{ 'rounded-t-none': data.length }"
-      for="edit-category"
-    >
+    <label class="btn-accent btn-block btn gap-2" for="edit-category">
       <FontAwesomeIcon :icon="['fas', 'plus']" size="lg" />
       Add new category
     </label>

@@ -164,6 +164,9 @@ export default defineComponent({
       </div>
     </div>
 
-    <button type="submit" class="btn-primary btn mt-6">Save</button>
+    <button type="submit" class="btn-primary btn mt-6">
+      <FontAwesomeIcon :icon="['fas', 'floppy-disk']" size="lg" />
+      Save
+    </button>
   </Form>
 </template>
