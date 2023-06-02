@@ -5,6 +5,6 @@ import PostForm from '../components/post-form/PostForm.vue'
 </script>
 
 <template>
-  <PageTitle>New Post </PageTitle>
+  <PageTitle>New Post</PageTitle>
   <PostForm />
 </template>
