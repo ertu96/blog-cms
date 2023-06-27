@@ -4,4 +4,5 @@ export interface Category {
   updatedAt: Date
   name: string
   slug: string
+  thumbnail: string
 }

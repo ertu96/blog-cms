@@ -30,7 +30,7 @@ const systemStore = useSystemStore()
             </span>
           </div>
         </li>
-        <div v-if="systemStore.isLoggedIn" class="divider" />
+        <div v-if="systemStore.isLoggedIn" class="divider my-1" />
         <li v-if="systemStore.isLoggedIn">
           <button
             class="flex items-center gap-1"

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { PropType, defineComponent } from 'vue'
 import { Category } from '../../../../interfaces/Category'
 import { useCategoryStore } from '../../../../stores/CategoryStore'
+import { buildThumbbailUrl } from '../../../../utils/buildThumbbailUrl'
 
 export default defineComponent({
   components: { FontAwesomeIcon },
@@ -16,21 +17,26 @@ export default defineComponent({
     const categoryStore = useCategoryStore()
     return { setSelectedCategory: categoryStore.setSelectedCategory }
   },
+  methods: { buildThumbbailUrl },
 })
 </script>
 
 <template>
   <tr>
-    <td class="rounded-none">
+    <td>
       <div class="avatar h-16 w-16">
-        <img src="https://picsum.photos/200" :alt="category.name" />
+        <img
+          class="rounded-sm"
+          :src="buildThumbbailUrl('categories', category.thumbnail)"
+          :alt="category.name"
+        />
       </div>
     </td>
     <td>
       {{ category.name }}
     </td>
     <td>{{ category.slug }}</td>
-    <td class="rounded-none">
+    <td>
       <label
         for="edit-category"
         class="btn-ghost btn"
