@@ -5,7 +5,6 @@ import { useToast } from 'vue-toastification'
 import { string } from 'yup'
 import { createOrEditCategory } from '../../../api/category/utils/createOrEditCategory'
 import { Category } from '../../../interfaces/Category'
-
 import { CategoryForm } from '../../../interfaces/forms/CategoryForm'
 import { useCategoryStore } from '../../../stores/CategoryStore'
 import DynamicForm from '../../form/DynamicForm.vue'

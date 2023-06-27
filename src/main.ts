@@ -8,6 +8,7 @@ import App from './App.vue'
 import router from './router'
 
 import {
+  faBars,
   faFloppyDisk,
   faImage,
   faMoon,
@@ -16,6 +17,7 @@ import {
   faRightToBracket,
   faSun,
   faTrash,
+  faUser,
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -31,6 +33,8 @@ library.add(faTrash)
 library.add(faPenToSquare)
 library.add(faImage)
 library.add(faFloppyDisk)
+library.add(faBars)
+library.add(faUser)
 
 const app = createApp(App)
 

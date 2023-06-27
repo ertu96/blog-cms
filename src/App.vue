@@ -6,7 +6,7 @@ import { getCategories } from './api/category/getCategories'
 import { getPosts } from './api/post/getPosts'
 import { getUsers } from './api/user/getUsers'
 import Footer from './components/layout/Footer.vue'
-import Navbar from './components/layout/Navbar.vue'
+import Navbar from './components/layout/navbar/Navbar.vue'
 import { useSystemStore } from './stores/SystemStore'
 
 const systemStore = useSystemStore()
